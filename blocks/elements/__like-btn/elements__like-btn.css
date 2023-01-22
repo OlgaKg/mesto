@@ -10,9 +10,9 @@
     min-width: 22px;
     height: 19px;
     cursor: pointer;
+    transition: .4s linear;
 }
 
 .elements__like-btn:hover {
     opacity: .5;
-    transition: .4s linear;
 }

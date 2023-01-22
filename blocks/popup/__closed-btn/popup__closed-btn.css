@@ -7,11 +7,11 @@ background-repeat: no-repeat;
 background-size: contain;
 cursor: pointer;
 position: absolute;
+transition: .4s linear;
 }
 
 .popup__closed-btn:hover {
     opacity: .6;
-    transition: .4s linear;
 }
 
 @media (min-width: 320px) {

@@ -7,11 +7,11 @@
     padding: 0;
     border: 2px solid #FFF;
     margin: 0 auto;
+    transition: .4s linear;
 }
 
 .profile__add-btn:hover {
     opacity: .6;
-    transition: .4s linear;
 }
 
 @media (min-width: 320px) {

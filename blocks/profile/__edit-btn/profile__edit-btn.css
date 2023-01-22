@@ -6,11 +6,11 @@
     background-image: url(../../../images/EditButton.svg);
     background-repeat: no-repeat;
     cursor: pointer;
+    transition: .4s linear;
 }
 
 .profile__edit-btn:hover {
     opacity: .6;
-    transition: .4s linear;
 }
 
 

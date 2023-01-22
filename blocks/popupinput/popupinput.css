@@ -1,4 +1,4 @@
-.popup__input {
+.popupinput {
     margin: 0 auto;
     margin-bottom: 23px;
     border-style: none;
@@ -10,22 +10,22 @@
     padding: 0;
 }
 
-.popup__input:focus {
+.popupinput:focus {
     outline: none;
 }
 
-.popup__input:last-of-type {
+.popupinput:last-of-type {
     margin-bottom: 0;
 }
 
 @media (min-width: 320px) {
-    .popup__input {
+    .popupinput {
         width: 238px;
     }
 }
 
 @media (min-width: 1280px) {
-    .popup__input {
+    .popupinput {
         width: 358px;
     }
 }
