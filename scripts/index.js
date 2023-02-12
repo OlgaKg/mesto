@@ -91,7 +91,7 @@ function renderCards() {
 function createCard(item) {
     const card = template.cloneNode(true);
     card.querySelector('.elements__title').textContent = item.name;
-    card.querySelector('.elements__image').alt = item.name;
+    card.querySelector('.elements__title').alt = item.name;
     card.querySelector('.elements__image').src = item.link;
     card.querySelector('.elements__like-btn').addEventListener('click', (event) => {
         event.target.classList.toggle('elements__like-btn_active');
@@ -105,7 +105,7 @@ function createCard(item) {
         const imagePreview = imagePopup.querySelector('.popup__preview-image');
         imagePreview.src = item.link;//..
         imagePreview.alt = item.name;//..
-        imagePopup.querySelector('.popup__title-image').textContent = item.title;
+        imagePopup.querySelector('.popup__title-image').textContent = item.name;
     });
 
     return card;
