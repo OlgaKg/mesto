@@ -61,7 +61,7 @@ const closePopup = () => { // объявляем функцию закрытия
     if (!popupContainer) return; // если их нет, то прекращаем выполнение функции
     popupContainer.forEach(el => { // если есть, то для каждого из них
         el.addEventListener('click', event => { // при клике
-            if (event.target.closest('.popup__closed-btn')) { // если клик был клик на кнопке закрытия
+            if (event.target.closest('.popup__closed-btn, .popup__create-btn')) { // если клик был клик на кнопке закрытия
                 el.classList.remove('popup_opened'); // то скрываем модальное окно, удаляя активный класс
             }
         });
