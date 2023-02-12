@@ -1,5 +1,8 @@
-.elements__like-btn {
-    background-image: url(../../../images/like-btn.svg);
+.elements__delete-btn {
+    background-image: url(../../../images/Trash.svg);
+    position: absolute;
+    top: 20px;
+    right: 20px;
     background-color: unset;
     background-repeat: no-repeat;
     background-position: center;
@@ -7,12 +10,12 @@
     border: none;
     padding: 0;
     align-self: center;
-    min-width: 22px;
+    min-width: 18px;
     height: 19px;
     cursor: pointer;
     transition: .4s linear;
 }
 
-.elements__like-btn:hover {
+.elements__delete-btn:hover {
     opacity: .5;
 }
