@@ -114,7 +114,7 @@ function createCard(item) {
 function handleFormSubmitCard(evt) {
     evt.preventDefault();
 
-    // const title = imageNameInput.value;    //..
+    // const title = imageNameInput.value;    //...
     // const link = imageLinkInput.value; //..
     // const card = template.cloneNode(true); //..
     // card.querySelector('.elements__title').textContent = title; //..
