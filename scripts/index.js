@@ -37,32 +37,32 @@ const elementsCards = document.querySelector('.elements');
 const createBtn = document.querySelector('.popup__create-btn');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
 const imageLinkInput = document.querySelector(`input[name='image-link']`);
-const imageName = document.querySelector('.popup__input_type_image-name');//..
-const imageLink = document.querySelector('.popup__input_type_image-link');//..
+const imageName = document.querySelector('.popup__input_type_image-name');
+const imageLink = document.querySelector('.popup__input_type_image-link');
 
 const imagePopup = document.querySelector('.popup_type_image');
 
 
 
-const openPopup = (BtnOpen, popupContainer) => { // объявляем функцию открытия модального окна, которая принимает в качестве параметров селекторы кнопки и соответствующего модального окна
-    const popupBtnOpen = document.querySelector(BtnOpen); // ищем кнопку по переданному селектору
-    const popup = document.querySelector(popupContainer); // ищем модальное окно по переданному селектору
-    if (!popupBtnOpen || !popup) return // если такая кнопка или модальное окно не найдены, то прекращаем работу функции
-    popupBtnOpen.addEventListener('click', event => { // при клике на кнопку
-        event.preventDefault(); // предотвращаем браузерные действия (если кнопка сделана через тег ссылки <a href=""></a>, то отменяется переход по ссылке)
-        popup.classList.add('popup_opened'); // отображаем модальное окно, добавив ему активный класс
+const openPopup = (BtnOpen, popupContainer) => {
+    const popupBtnOpen = document.querySelector(BtnOpen);
+    const popup = document.querySelector(popupContainer);
+    if (!popupBtnOpen || !popup) return; 
+    popupBtnOpen.addEventListener('click', event => {
+        event.preventDefault();
+        popup.classList.add('popup_opened');
     });
     nameInput.value = profileName.textContent;
     professionInput.value = profileProfession.textContent;
 };
 
-const closePopup = () => { // объявляем функцию закрытия модального окна
-    const popupContainer = document.querySelectorAll('.popup'); // ищем все модальные окна
-    if (!popupContainer) return; // если их нет, то прекращаем выполнение функции
-    popupContainer.forEach(el => { // если есть, то для каждого из них
-        el.addEventListener('click', event => { // при клике
-            if (event.target.closest('.popup__closed-btn, .popup__create-btn')) { // если клик был клик на кнопке закрытия
-                el.classList.remove('popup_opened'); // то скрываем модальное окно, удаляя активный класс
+const closePopup = () => {
+    const popupContainer = document.querySelectorAll('.popup');
+    if (!popupContainer) return;
+    popupContainer.forEach(el => {
+        el.addEventListener('click', event => {
+            if (event.target.closest('.popup__closed-btn, .popup__save-btn')) {
+                el.classList.remove('popup_opened');
             }
         });
     });
@@ -103,31 +103,21 @@ function createCard(item) {
     card.querySelector('.elements__image').addEventListener('click', () => {
         openPopup('.elements__image', '.popup_type_image');
         const imagePreview = imagePopup.querySelector('.popup__preview-image');
-        imagePreview.src = item.link;//..
-        imagePreview.alt = item.name;//..
+        imagePreview.src = item.link;
+        imagePreview.alt = item.name;
         imagePopup.querySelector('.popup__title-image').textContent = item.name;
     });
-
     return card;
 }
 
 function handleFormSubmitCard(evt) {
     evt.preventDefault();
-
-    // const title = imageNameInput.value;    //...
-    // const link = imageLinkInput.value; //..
-    // const card = template.cloneNode(true); //..
-    // card.querySelector('.elements__title').textContent = title; //..
-    // card.querySelector('.elements__image').alt = title; //..
-    // card.querySelector('.elements__image').src = link; //..
-
     elementsCards.prepend(card);
     closePopup();
 }
 
 openPopup('.profile__edit-btn-open-popup', '.popup_type_edit-profile');
 openPopup('.profile__add-btn-open-popup', '.popup_type_add-new-card');
-
 closePopup();
 renderCards();
 
