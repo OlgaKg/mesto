@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
     <link rel="stylesheet" href="./pages/index.css">
-    <script type="module" src="./scripts/index.js" defer></script>
-    <script type="module" src="./scripts/initialCards.js" defer></script>
+    <script type="module" src="./scripts/index.js"></script>
+    <script type="module" src="./scripts/initialCards.js"></script>
 </head>
 
 <body class="page">
@@ -36,11 +36,15 @@
         <div class="popup__container">
             <button type="button" class="popup__closed-btn"></button>
             <h3 class="popup__title">Редактировать профиль</h3>
-            <form class="popup__form popup__form_profile" name="edit-form">
-                <input class="popup__input popup__input_type_user-name" type="text" name="user" value=""
-                    placeholder="Имя">
-                <input class="popup__input popup__input_type_profession" type="text" name="profession" value=""
-                    placeholder="Профессия">
+            <form action="/" class="popup__form popup__form_profile" name="edit-form" novalidate>
+                <!-- <fieldset class="popup__form-items"> -->
+                    <input class="popup__input popup__input_type_user-name" type="text" name="user" id="username-input"
+                        value="" placeholder="Имя" minlength="2" maxlength="40" required>
+                    <span class="popup__input-error username-input-error"></span>
+                    <input class="popup__input popup__input_type_profession" type="text" name="profession"
+                        id="profession-input" value="" placeholder="Профессия" minlength="2" maxlength="200" required>
+                    <span class="popup__input-error profession-input-error"></span>
+                <!-- </fieldset> -->
                 <button type="submit" class="popup__save-btn">Сохранить</button>
             </form>
         </div>
@@ -49,11 +53,15 @@
         <div class="popup__container">
             <button type="button" class="popup__closed-btn"></button>
             <h3 class="popup__title">Новое место</h3>
-            <form class="popup__form popup__form_new-card" name="cards-form">
-                <input class="popup__input popup__input_type_image-name" type="text" name="image-name" value=""
-                    placeholder="Название">
-                <input class="popup__input popup__input_type_image-link" type="url" name="image-link" value=""
-                    placeholder="Ссылка на картинку">
+            <form action="/" class="popup__form popup__form_new-card" name="cards-form" novalidate>
+                <!-- <fieldset class="popup__form-items"> -->
+                    <input class="popup__input popup__input_type_image-name" type="text" name="image-name"
+                        id="image-name-input" value="" placeholder="Название" required>
+                    <span class="popup__input-error image-name-input-error"></span>
+                    <input class="popup__input popup__input_type_image-link" type="url" name="image-link"
+                        id="image-link-input" value="" placeholder="Ссылка на картинку" required>
+                    <span class="popup__input-error image-link-input-error"></span>
+                <!-- </fieldset> -->
                 <button type="submit" class="popup__save-btn popup__create-btn">Создать</button>
             </form>
         </div>
