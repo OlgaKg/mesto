@@ -2,6 +2,7 @@ import { initialCards } from './initialCards.js';
 
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
 const addImgBtn = document.querySelector('.profile__add-btn');
+const closeBtns = document.querySelectorAll('.popup__closed-btn');
 const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddNewCard = document.querySelector('.popup_type_add-new-card');
@@ -27,10 +28,19 @@ const imageLinkInput = document.querySelector(`input[name='image-link']`);
 
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
+    document.addEventListener('keydown', closePopupEsc);
 };
 
 const closePopup = (popup) => {
     popup.classList.remove('popup_opened');
+    document.removeEventListener('keydown', closePopupEsc);
+};
+
+const closePopupEsc = (evt) => {
+    if (evt.key === 'Escape') {
+        const popupOpen = document.querySelector('.popup_opened');
+        closePopup(popupOpen);
+    }
 };
 
 function handleFormSubmitProfile(evt) {
@@ -73,10 +83,6 @@ function createCard(item) {
     return card;
 }
 
-
-
-
-
 editBtn.addEventListener('click', () => {
     openPopup(popupEditProfile);
     nameInput.value = profileName.textContent;
@@ -98,63 +104,14 @@ createBtn.addEventListener('click', (evt) => {
 formProfile.addEventListener('submit', handleFormSubmitProfile);
 formCard.addEventListener('submit', handleFormSubmitCard);
 
-
-
-
-popups.forEach((element) => {
-    element.querySelector('.popup__closed-btn').addEventListener('click', () => {
-        closePopup(element);
+closeBtns.forEach(closeBtn => {
+    const popup = closeBtn.closest('.popup');
+    popup.addEventListener('click', (evt) => {
+        if (evt.target === evt.currentTarget || evt.target === closeBtn) {
+            closePopup(popup);
+        }
     });
 });
 
 renderCards();
-
-
-
-
-// validation
-const showInputError = (formElement, inputElement, errorMessage) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('form__input_type_error');
-    errorElement.textContent = errorMessage;
-    errorElement.classList.add('form__input-error_active');
-  };
-  
-  const hideInputError = (formElement, inputElement) => {
-    const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('form__input_type_error');
-    errorElement.classList.remove('form__input-error_active');
-    errorElement.textContent = '';
-  };
-  
-  const checkInputValidity = (formElement, inputElement) => {
-    if (!inputElement.validity.valid) {
-      showInputError(formElement, inputElement, inputElement.validationMessage);
-    } else {
-      hideInputError(formElement, inputElement);
-    }
-  };
-  
-  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    inputList.forEach((inputElement) => {
-      inputElement.addEventListener('input', function () {
-        checkInputValidity(formElement, inputElement);
-      });
-    });
-  };
-  
-  const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll('.popup__form'));
-    formList.forEach((formElement) => {
-    formElement.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-    });
-  
-      setEventListeners(formElement);
-  });
-  };
-  
-  enableValidation();
-
 
