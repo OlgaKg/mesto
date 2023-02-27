@@ -3,7 +3,6 @@ import { initialCards } from './initialCards.js';
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
 const addImgBtn = document.querySelector('.profile__add-btn');
 const closeBtns = document.querySelectorAll('.popup__closed-btn');
-const popups = document.querySelectorAll('.popup');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddNewCard = document.querySelector('.popup_type_add-new-card');
 const popupPreviewImg = document.querySelector('.popup__preview-image');
@@ -24,7 +23,7 @@ const createBtn = document.querySelector('.popup__create-btn');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
 const imageLinkInput = document.querySelector(`input[name='image-link']`);
 
-
+const formInputCard = document.querySelector('.popup__input');
 
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
@@ -92,17 +91,29 @@ editBtn.addEventListener('click', () => {
 addImgBtn.addEventListener('click', () => {
     formCard.reset();
     openPopup(popupAddNewCard);
+
+    createBtn.disabled = true;
+    formInputCard.addEventListener("keyup", buttonState);
+
+    function buttonState() {
+        if (document.querySelector(".popup__input").value === "") {
+            createBtn.disabled = true;
+        } else {
+            createBtn.disabled = false;
+        }
+    }
 });
 
-createBtn.addEventListener('click', (evt) => {
+formCard.addEventListener('submit', (evt) => {
     evt.preventDefault();
     const card = createCard({ name: imageNameInput.value, link: imageLinkInput.value });
     elementsCards.prepend(card);
     closePopup(popupAddNewCard);
 });
 
+
 formProfile.addEventListener('submit', handleFormSubmitProfile);
-formCard.addEventListener('submit', handleFormSubmitCard);
+
 
 closeBtns.forEach(closeBtn => {
     const popup = closeBtn.closest('.popup');

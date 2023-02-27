@@ -1,9 +1,9 @@
 const config = {
         formSelector: '.popup__form',
         inputSelector: '.popup__input',
-        submitButtonSelector: '.popup__save-btn', 
+        submitButtonSelector: '.popup__save-btn',
         inputErrorClass: 'popup__input_invalid',
-        errorClass: 'popup__input-error_visible' 
+        errorClass: 'popup__input-error_visible'
       }; 
 
 
@@ -31,13 +31,13 @@ const config = {
     
     const setEventListeners = (formElement, config) => {
       const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
-      const buttonSubmit = formElement.querySelector(config.submitButtonSelector);
-      toggleButtonState(inputList, buttonSubmit, config);
+      const buttonElement = formElement.querySelector(config.submitButtonSelector);
+      toggleButtonState(inputList, buttonElement, config);
     
       inputList.forEach((inputElement) => {
         inputElement.addEventListener('input', function () {
           checkInputValidity(formElement, inputElement, config);
-          toggleButtonState(inputList, buttonSubmit, config);
+          toggleButtonState(inputList, buttonElement, config);
         });
       });
     };
@@ -59,14 +59,14 @@ const config = {
       return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
       });
-    };
+    };   
 
     const toggleButtonState = (inputList, buttonElement, config) => {
       if (hasInvalidInput(inputList, config)) {
         buttonElement.disabled = true;
       }
       else {
-        buttonElement.removeAttribute('disabled', 'disabled');
+        buttonElement.removeAttribute("disabled", "disabled");
       }
     };
 
