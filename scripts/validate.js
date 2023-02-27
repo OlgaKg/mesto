@@ -6,7 +6,6 @@ const config = {
         errorClass: 'popup__input-error_visible'
       }; 
 
-
   const showInputError = (formElement, inputElement, errorMessage, config) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);  
       inputElement.classList.add(config.inputErrorClass);

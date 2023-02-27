@@ -23,8 +23,6 @@ const createBtn = document.querySelector('.popup__create-btn');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
 const imageLinkInput = document.querySelector(`input[name='image-link']`);
 
-const formInputCard = document.querySelector('.popup__input');
-
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
     document.addEventListener('keydown', closePopupEsc);
@@ -47,11 +45,6 @@ function handleFormSubmitProfile(evt) {
     profileName.textContent = nameInput.value;
     profileProfession.textContent = professionInput.value;
     closePopup(popupEditProfile);
-}
-
-function handleFormSubmitCard(evt) {
-    evt.preventDefault();
-    elementsCards.prepend(card);
 }
 
 function renderCards() {
@@ -91,17 +84,7 @@ editBtn.addEventListener('click', () => {
 addImgBtn.addEventListener('click', () => {
     formCard.reset();
     openPopup(popupAddNewCard);
-
     createBtn.disabled = true;
-    formInputCard.addEventListener("keyup", buttonState);
-
-    function buttonState() {
-        if (document.querySelector(".popup__input").value === "") {
-            createBtn.disabled = true;
-        } else {
-            createBtn.disabled = false;
-        }
-    }
 });
 
 formCard.addEventListener('submit', (evt) => {
