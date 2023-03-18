@@ -1,13 +1,20 @@
-import { initialCards } from './initialCards.js';
+import initialCards from './initialCards.js';
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
+const config = {
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__save-btn',
+    inputErrorClass: 'popup__input_invalid',
+    errorClass: 'popup__input-error_visible'
+  };
 
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
 const addImgBtn = document.querySelector('.profile__add-btn');
 const closeBtns = document.querySelectorAll('.popup__closed-btn');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddNewCard = document.querySelector('.popup_type_add-new-card');
-const popupPreviewImg = document.querySelector('.popup__preview-image');
-const popupTitleImg = document.querySelector('.popup__title-image');
-const popupImg = document.querySelector('.popup_type_image');
 
 const formProfile = document.querySelector('.popup__form_profile');
 const formCard = document.querySelector('.popup__form_new-card');
@@ -22,6 +29,10 @@ const elementsCards = document.querySelector('.elements');
 const createBtn = document.querySelector('.popup__create-btn');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
 const imageLinkInput = document.querySelector(`input[name='image-link']`);
+
+
+const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
+const validateAddNewCard = new FormValidator(config, popupAddNewCard);
 
 const openPopup = (popup) => {
     popup.classList.add('popup_opened');
@@ -47,33 +58,43 @@ function handleFormSubmitProfile(evt) {
     closePopup(popupEditProfile);
 }
 
+// function renderCards() {
+//     const cards = initialCards.map((item) => {
+//         return createCard(item);
+//     });
+//     elementsCards.prepend(...cards);
+// } так было
+
 function renderCards() {
     const cards = initialCards.map((item) => {
-        return createCard(item);
+        const card = new Card(item, '.elements__card-template');
+        return card.createCard(item);
     });
     elementsCards.prepend(...cards);
 }
 
-function createCard(item) {
-    const card = template.cloneNode(true);
-    card.querySelector('.elements__title').textContent = item.name;
-    card.querySelector('.elements__image').alt = item.name;
-    card.querySelector('.elements__image').src = item.link;
-    card.querySelector('.elements__like-btn').addEventListener('click', (event) => {
-        event.target.classList.toggle('elements__like-btn_active');
-    });
-    card.querySelector('.elements__delete-btn').addEventListener('click', () => {
-        card.remove();
-    });
 
-    card.querySelector('.elements__image').addEventListener('click', () => {
-        popupPreviewImg.src = item.link;
-        popupPreviewImg.alt = item.name;
-        popupTitleImg.textContent = item.name;
-        openPopup(popupImg);
-    });
-    return card;
-}
+
+// function createCard(item) {
+//     const card = template.cloneNode(true);
+//     card.querySelector('.elements__title').textContent = item.name;
+//     card.querySelector('.elements__image').alt = item.name;
+//     card.querySelector('.elements__image').src = item.link;
+//     card.querySelector('.elements__like-btn').addEventListener('click', (event) => {
+//         event.target.classList.toggle('elements__like-btn_active');
+//     });
+//     card.querySelector('.elements__delete-btn').addEventListener('click', () => {
+//         card.remove();
+//     });
+
+//     card.querySelector('.elements__image').addEventListener('click', () => {
+//         popupPreviewImg.src = item.link;
+//         popupPreviewImg.alt = item.name;
+//         popupTitleImg.textContent = item.name;
+//         openPopup(popupImg);
+//     });
+//     return card;
+// }
 
 editBtn.addEventListener('click', () => {
     openPopup(popupEditProfile);
@@ -109,3 +130,7 @@ closeBtns.forEach(closeBtn => {
 
 renderCards();
 
+validateEditProfilePopup.enableValidation();
+validateAddNewCard.enableValidation();
+
+export { openPopup};

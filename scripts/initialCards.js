@@ -4,12 +4,12 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     },
     {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+        name: 'Куршская коса',
+        link: 'https://images.unsplash.com/photo-1589876876491-df78ff60e196?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80'
     },
     {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+        name: 'Красная Поляна',
+        link: 'https://images.unsplash.com/photo-1603789888242-8cbdae41f609?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'
     },
     {
         name: 'Камчатка',
@@ -25,4 +25,4 @@ const initialCards = [
     }
 ];
 
-export { initialCards };
+export default initialCards;
