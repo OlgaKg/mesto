@@ -9,7 +9,7 @@ const config = {
     inputErrorClass: 'popup__input_invalid',
     errorClass: 'popup__input-error_visible',
     cardTemplate: '.elements__card-template'
-  };
+};
 
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
 const addImgBtn = document.querySelector('.profile__add-btn');
@@ -28,6 +28,10 @@ const elementsCards = document.querySelector('.elements');
 const createBtn = document.querySelector('.popup__create-btn');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
 const imageLinkInput = document.querySelector(`input[name='image-link']`);
+
+const popupPreviewImg = document.querySelector('.popup__preview-image');
+const popupTitleImg = document.querySelector('.popup__title-image');
+const popupImg = document.querySelector('.popup_type_image');
 
 
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
@@ -57,8 +61,8 @@ function handleFormSubmitProfile(evt) {
     closePopup(popupEditProfile);
 };
 
-function createAndRenderCard(data){
-    const card = new Card( data, config.cardTemplate);
+function createAndRenderCard(data) {
+    const card = new Card(data, config.cardTemplate, handleCardClick);
     card.createCard();
     elementsCards.prepend(card._card);
 };
@@ -67,6 +71,13 @@ function renderInitialCards() {
     initialCards.map((item) => {
         createAndRenderCard(item);
     });
+};
+
+function handleCardClick(name, link) {
+    popupPreviewImg.src = link;
+    popupPreviewImg.alt = name;
+    popupTitleImg.textContent = name;
+    openPopup(popupImg);
 };
 
 editBtn.addEventListener('click', () => {
@@ -102,5 +113,3 @@ renderInitialCards();
 
 validateEditProfilePopup.enableValidation();
 validateAddNewCard.enableValidation();
-
-export { openPopup};
