@@ -7,7 +7,8 @@ const config = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__save-btn',
     inputErrorClass: 'popup__input_invalid',
-    errorClass: 'popup__input-error_visible'
+    errorClass: 'popup__input-error_visible',
+    cardTemplate: '.elements__card-template'
   };
 
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
@@ -23,8 +24,6 @@ const professionInput = document.querySelector(`input[name='profession']`);
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
 
-
-const template = document.querySelector('.elements__card-template').content.querySelector('.elements__element');
 const elementsCards = document.querySelector('.elements');
 const createBtn = document.querySelector('.popup__create-btn');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
@@ -56,45 +55,19 @@ function handleFormSubmitProfile(evt) {
     profileName.textContent = nameInput.value;
     profileProfession.textContent = professionInput.value;
     closePopup(popupEditProfile);
-}
+};
 
-// function renderCards() {
-//     const cards = initialCards.map((item) => {
-//         return createCard(item);
-//     });
-//     elementsCards.prepend(...cards);
-// } так было
+function createAndRenderCard(data){
+    const card = new Card( data, config.cardTemplate);
+    card.createCard();
+    elementsCards.prepend(card._card);
+};
 
-function renderCards() {
-    const cards = initialCards.map((item) => {
-        const card = new Card(item, '.elements__card-template');
-        return card.createCard(item);
+function renderInitialCards() {
+    initialCards.map((item) => {
+        createAndRenderCard(item);
     });
-    elementsCards.prepend(...cards);
-}
-
-
-
-// function createCard(item) {
-//     const card = template.cloneNode(true);
-//     card.querySelector('.elements__title').textContent = item.name;
-//     card.querySelector('.elements__image').alt = item.name;
-//     card.querySelector('.elements__image').src = item.link;
-//     card.querySelector('.elements__like-btn').addEventListener('click', (event) => {
-//         event.target.classList.toggle('elements__like-btn_active');
-//     });
-//     card.querySelector('.elements__delete-btn').addEventListener('click', () => {
-//         card.remove();
-//     });
-
-//     card.querySelector('.elements__image').addEventListener('click', () => {
-//         popupPreviewImg.src = item.link;
-//         popupPreviewImg.alt = item.name;
-//         popupTitleImg.textContent = item.name;
-//         openPopup(popupImg);
-//     });
-//     return card;
-// }
+};
 
 editBtn.addEventListener('click', () => {
     openPopup(popupEditProfile);
@@ -110,14 +83,11 @@ addImgBtn.addEventListener('click', () => {
 
 formCard.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    const card = createCard({ name: imageNameInput.value, link: imageLinkInput.value });
-    elementsCards.prepend(card);
+    createAndRenderCard({ name: imageNameInput.value, link: imageLinkInput.value });
     closePopup(popupAddNewCard);
 });
 
-
 formProfile.addEventListener('submit', handleFormSubmitProfile);
-
 
 closeBtns.forEach(closeBtn => {
     const popup = closeBtn.closest('.popup');
@@ -128,7 +98,7 @@ closeBtns.forEach(closeBtn => {
     });
 });
 
-renderCards();
+renderInitialCards();
 
 validateEditProfilePopup.enableValidation();
 validateAddNewCard.enableValidation();
