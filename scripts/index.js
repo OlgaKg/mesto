@@ -93,7 +93,6 @@ addImgBtn.addEventListener('click', () => {
     openPopup(popupAddNewCard);
     validateAddNewCard.disableSaveBtn();
     validateAddNewCard.resetInputError();
-
 });
 
 formCard.addEventListener('submit', (evt) => {
