@@ -63,8 +63,8 @@ function handleFormSubmitProfile(evt) {
 
 function createAndRenderCard(data) {
     const card = new Card(data, config.cardTemplate, handleCardClick);
-    card.createCard();
-    elementsCards.prepend(card._card);
+    const cardElement = card.createCard();
+    elementsCards.prepend(cardElement);
 };
 
 function renderInitialCards() {
@@ -78,10 +78,12 @@ function handleCardClick(name, link) {
     popupPreviewImg.alt = name;
     popupTitleImg.textContent = name;
     openPopup(popupImg);
+
 };
 
 editBtn.addEventListener('click', () => {
     openPopup(popupEditProfile);
+    validateEditProfilePopup.resetInputError();
     nameInput.value = profileName.textContent;
     professionInput.value = profileProfession.textContent;
 });
@@ -89,7 +91,9 @@ editBtn.addEventListener('click', () => {
 addImgBtn.addEventListener('click', () => {
     formCard.reset();
     openPopup(popupAddNewCard);
-    createBtn.disabled = true;
+    validateAddNewCard.disableSaveBtn();
+    validateAddNewCard.resetInputError();
+
 });
 
 formCard.addEventListener('submit', (evt) => {
