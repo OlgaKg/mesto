@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
-    <link rel="stylesheet" href="./pages/index.css">
+    <link rel="stylesheet" href="../src/pages/index.css">
 
 </head>
 
 <body class="page">
     <header class="header">
-        <img class="header__logo" src="images/logo.svg" alt="Логотип Место">
+        <img class="header__logo" src="src/images/logo.svg" alt="Логотип Место">
     </header>
     <main class="content">
         <section class="profile">
-            <img class="profile__avatar" src="images/avatar.jpg" alt="Аватар Жак-Ив Кусто">
+            <img class="profile__avatar" src="src/images/avatar.jpg" alt="Аватар Жак-Ив Кусто">
             <div class="profile__info">
                 <div class="profile__bio">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -41,7 +41,8 @@
                         value="" placeholder="Имя" minlength="2" maxlength="40" required="required">
                     <span class="popup__input-error username-input-error"></span>
                     <input class="popup__input popup__input_type_profession" type="text" name="profession"
-                        id="profession-input" value="" placeholder="Профессия" minlength="2" maxlength="200" required="required">
+                        id="profession-input" value="" placeholder="Профессия" minlength="2" maxlength="200"
+                        required="required">
                     <span class="popup__input-error profession-input-error"></span>
                 </fieldset>
                 <button type="submit" class="popup__save-btn">Сохранить</button>
@@ -55,7 +56,8 @@
             <form action="/" class="popup__form popup__form_new-card" name="cards-form" novalidate>
                 <fieldset class="popup__form-items">
                     <input class="popup__input popup__input_type_image-name" type="text" name="image-name"
-                        id="image-name-input" value="" placeholder="Название" minlength="2" maxlength="30" required="required">
+                        id="image-name-input" value="" placeholder="Название" minlength="2" maxlength="30"
+                        required="required">
                     <span class="popup__input-error image-name-input-error"></span>
                     <input class="popup__input popup__input_type_image-link" type="url" name="image-link"
                         id="image-link-input" value="" placeholder="Ссылка на картинку" required="required">
@@ -83,10 +85,12 @@
         </article>
     </template>
 
-    <script type="module" src="./scripts/index.js"></script>
-    <script type="module" src="./scripts/initialCards.js"></script>
-    <script type="module" src="./scripts/Card.js"></script>
-    <script type="module" src="./scripts/FormValidator.js"></script>
+    <script type="module" src="./src/pages/index.js"></script>
+    <script type="module" src="./src/components/initialCards.js"></script>
+    <script type="module" src="./src/components/Card.js"></script>
+    <script type="module" src="./src/components/Popup.js"></script>
+    <script type="module" src="./src/components/PopupWithImage.js"></script>
+    <script type="module" src="./src/components/FormValidator.js"></script>
 
 </body>
 
