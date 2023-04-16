@@ -12,6 +12,10 @@
  - добавлены классы Card и FormValidator,
  - JavaScript разбит на модули.
 
+ В 8 проектной работе: рефакторинг и сборка Вебпаком
+ - созданы классы Section, Popup, PopupWithImage, PopupWithForm, UserInfo,
+ - преобразован класс Card
+
 
 **Ссылки**
 
