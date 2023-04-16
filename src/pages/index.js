@@ -13,7 +13,6 @@ import {
     popupPreviewImg, popupTitleImg, popupImg
 } from '../utils/constants.js';
 
-
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
 const validateAddNewCard = new FormValidator(config, popupAddNewCard);
 
@@ -73,22 +72,15 @@ function createAndRenderCard(data) {
     elementsCards.prepend(cardElement);
 };
 
-// function renderInitialCards() { ///нужна ли эта функция???
-//     initialCards.map((item) => {
-//         createAndRenderCard(item);
-//     });
-// };
-
 editBtn.addEventListener('click', () => {
     popupProfile.openPopup();
     popupProfile.setInputValues(userInfo.getUserInfo());
     validateEditProfilePopup.resetInputError();
-    // nameInput.value = profileName.textContent;
-    // professionInput.value = profileProfession.textContent;
+    nameInput.value = profileName.textContent;
+    professionInput.value = profileProfession.textContent;
 });
 
 addImgBtn.addEventListener('click', () => {
-    // formCard.reset();
     popupAddCard.openPopup();
     validateAddNewCard.disableSaveBtn();
     validateAddNewCard.resetInputError();
@@ -96,13 +88,10 @@ addImgBtn.addEventListener('click', () => {
 
 formCard.addEventListener('submit', (evt) => {
     evt.preventDefault();
-    // createAndRenderCard({ name: imageNameInput.value, link: imageLinkInput.value });
     popupAddCard.closePopup();
 });
 
 formProfile.addEventListener('submit', handleFormSubmitProfile);
-
-// renderInitialCards();
 
 validateEditProfilePopup.enableValidation();
 validateAddNewCard.enableValidation();
