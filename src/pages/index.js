@@ -1,5 +1,5 @@
 import './index.css';
-import initialCards from '../components/initialCards.js';
+import initialCards from '../utils/initialCards.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -19,7 +19,7 @@ const validateAddNewCard = new FormValidator(config, popupAddNewCard);
 const defaultCardList = new Section({
     data: initialCards,
     renderer: (item) => {
-        const cardElement = createAndRenderCard(item);
+        const cardElement = renderCard(item);
         defaultCardList.addItem(cardElement);
     }
 }, config.cardTemplate);
@@ -32,7 +32,7 @@ const popupAddCard = new PopupWithForm({
     popupSelector: '.popup_type_add-new-card',
     formSelector: formCard,
     handleFormSubmit: () => {
-        createAndRenderCard({
+        renderCard({
             name: imageNameInput.value,
             link: imageLinkInput.value
         })
@@ -44,8 +44,8 @@ const popupProfile = new PopupWithForm({
     popupSelector: '.popup_type_edit-profile',
     formSelector: formCard,
     handleFormSubmit: (formData) => {
-        userInfo.getUserInfo(formData),
-            popupProfile.closePopup()
+        userInfo.setUserInfo(formData),
+            popupProfile.close()
     }
 });
 popupProfile.setEventListeners();
@@ -59,39 +59,30 @@ function handleFormSubmitProfile(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileProfession.textContent = professionInput.value;
-    popupProfile.closePopup();
+    popupProfile.close();
 };
 
-function createAndRenderCard(data) {
+function renderCard(data) {
     const card = new Card(data, config.cardTemplate, {
         handleCardClick: (name, link) => {
-            popupWithImage.openPopup(name, link)
+            popupWithImage.open(name, link)
         },
     });
     const cardElement = card.createCard();
-    elementsCards.prepend(cardElement);
+    Section.addItem(cardElement);
 };
 
 editBtn.addEventListener('click', () => {
-    popupProfile.openPopup();
+    popupProfile.open();
     popupProfile.setInputValues(userInfo.getUserInfo());
     validateEditProfilePopup.resetInputError();
-    nameInput.value = profileName.textContent;
-    professionInput.value = profileProfession.textContent;
 });
 
 addImgBtn.addEventListener('click', () => {
-    popupAddCard.openPopup();
+    popupAddCard.open();
     validateAddNewCard.disableSaveBtn();
     validateAddNewCard.resetInputError();
 });
-
-formCard.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    popupAddCard.closePopup();
-});
-
-formProfile.addEventListener('submit', handleFormSubmitProfile);
 
 validateEditProfilePopup.enableValidation();
 validateAddNewCard.enableValidation();
