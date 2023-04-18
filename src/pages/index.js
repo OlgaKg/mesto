@@ -20,9 +20,8 @@ const defaultCardList = new Section({
     data: initialCards,
     renderer: (item) => {
         const cardElement = renderCard(item);
-        defaultCardList.addItem(cardElement);
     }
-}, config.cardTemplate);
+}, config.cardListSelector);
 defaultCardList.renderedItems();
 
 const popupWithImage = new PopupWithImage('.popup_type_image');
@@ -31,36 +30,25 @@ popupWithImage.setEventListeners();
 const popupAddCard = new PopupWithForm({
     popupSelector: '.popup_type_add-new-card',
     formSelector: formCard,
-    handleFormSubmit: () => {
-        renderCard({
-            name: imageNameInput.value,
-            link: imageLinkInput.value
-        })
+    handleFormSubmit: (data) => {
+        renderCard(data)
     }
 });
 popupAddCard.setEventListeners();
-
-const popupProfile = new PopupWithForm({
-    popupSelector: '.popup_type_edit-profile',
-    formSelector: formCard,
-    handleFormSubmit: (formData) => {
-        userInfo.setUserInfo(formData),
-            popupProfile.close()
-    }
-});
-popupProfile.setEventListeners();
 
 const userInfo = new UserInfo({
     userNameSelector: profileName,
     userProfessionSelector: profileProfession
 });
 
-function handleFormSubmitProfile(evt) {
-    evt.preventDefault();
-    profileName.textContent = nameInput.value;
-    profileProfession.textContent = professionInput.value;
-    popupProfile.close();
-};
+const popupProfile = new PopupWithForm({
+    popupSelector: '.popup_type_edit-profile',
+    formSelector: formProfile,
+    handleFormSubmit: (data) => {
+        userInfo.setUserInfo(data)
+    }
+});
+popupProfile.setEventListeners();
 
 function renderCard(data) {
     const card = new Card(data, config.cardTemplate, {
@@ -69,7 +57,8 @@ function renderCard(data) {
         },
     });
     const cardElement = card.createCard();
-    elementsCards.prepend(cardElement);
+    defaultCardList.addItem(cardElement);
+    return cardElement;
 };
 
 editBtn.addEventListener('click', () => {

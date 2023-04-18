@@ -4,7 +4,8 @@ const config = {
     submitButtonSelector: '.popup__save-btn',
     inputErrorClass: 'popup__input_invalid',
     errorClass: 'popup__input-error_visible',
-    cardTemplate: '.elements__card-template'
+    cardTemplate: '.elements__card-template',
+    cardListSelector: '.elements'
 };
 
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
