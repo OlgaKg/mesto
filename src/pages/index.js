@@ -69,7 +69,7 @@ function renderCard(data) {
         },
     });
     const cardElement = card.createCard();
-    Section.addItem(cardElement);
+    elementsCards.prepend(cardElement);
 };
 
 editBtn.addEventListener('click', () => {
