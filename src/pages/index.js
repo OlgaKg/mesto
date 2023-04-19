@@ -22,7 +22,7 @@ const defaultCardList = new Section({
         const cardElement = renderCard(item);
     }
 }, config.cardListSelector);
-defaultCardList.renderedItems();
+defaultCardList.renderItems();
 
 const popupWithImage = new PopupWithImage('.popup_type_image');
 popupWithImage.setEventListeners();
