@@ -6,12 +6,21 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
-
+import Api from '../components/Api.js';
 import {
     config, editBtn, addImgBtn, closeBtns, popupEditProfile, popupAddNewCard, formProfile, formCard,
     nameInput, professionInput, profileName, profileProfession, elementsCards, imageNameInput, imageLinkInput,
     popupPreviewImg, popupTitleImg, popupImg
 } from '../utils/constants.js';
+
+const api = new Api({
+    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-64/',
+    headers: {
+        authorization: '64310842-09ec-48fd-bedb-7994dd64af4b',
+        'Content-Type': 'application/json'
+    }
+});
+api.getUser().then(data => console.log(data))
 
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
 const validateAddNewCard = new FormValidator(config, popupAddNewCard);
