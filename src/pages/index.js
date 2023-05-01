@@ -20,7 +20,8 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-api.getUser().then(data => console.log(data))
+api.getUser().then(data => console.log(data));
+api.getCards().then(data => console.log(data));
 
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
 const validateAddNewCard = new FormValidator(config, popupAddNewCard);

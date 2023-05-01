@@ -1,5 +1,3 @@
-import { get } from "http";
-
 export default class Api {
     constructor({baseUrl, headers}) {
         this.baseUrl = baseUrl;
@@ -15,6 +13,16 @@ export default class Api {
 
     getUser() {
         return fetch(`${this.baseUrl}users/me`, {
+            method: 'GET',
+            headers: this.headers
+        })
+        .then(res => {
+            return this._checkResponse(res)
+        })
+    }
+
+    getCards() {
+        return fetch(`${this.baseUrl}cards`, {
             method: 'GET',
             headers: this.headers
         })
