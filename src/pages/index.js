@@ -1,5 +1,5 @@
 import './index.css';
-import initialCards from '../utils/initialCards.js';
+// import initialCards from '../utils/initialCards.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
 import Section from '../components/Section.js';
@@ -26,6 +26,7 @@ api.getCards().then(data => console.log(data));
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
 const validateAddNewCard = new FormValidator(config, popupAddNewCard);
 
+const initialCards = api.getCards();
 const defaultCardList = new Section({
     data: initialCards,
     renderer: (item) => {

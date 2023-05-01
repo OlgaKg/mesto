@@ -41,7 +41,7 @@ export default class Card {
             this._card.remove();
         });
         this._cardImage.addEventListener('click', () => {
-            this._handleCardClick(this._name, this._link)//добавиоа скобки{} и name:
+            this._handleCardClick(this._name, this._link)
         });
     }
 
