@@ -20,8 +20,15 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-api.getUser().then(data => console.log(data));
-api.getCards().then(data => console.log(data));
+
+Promise.all([api.getUser(), api.getCards()])
+  .then(([userInfo, initialCards]) => {
+    userInfo.setUserInfo(userInfo);
+    defaultCardList.renderItems(initialCards.reverse());
+  })
+  .catch((err) => {
+    console.log(`Error: ${err}`);
+  });
 
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
 const validateAddNewCard = new FormValidator(config, popupAddNewCard);
