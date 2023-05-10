@@ -12,6 +12,7 @@ import {
     nameInput, professionInput, profileName, profileProfession, elementsCards, imageNameInput, imageLinkInput,
     popupPreviewImg, popupTitleImg, popupImg, profileAvatar, formAvatarUpdate, editAvatarBtn
 } from '../utils/constants.js';
+import { data } from 'browserslist';
 let userId = null;
 
 const validateAvatarUpdatePopup = new FormValidator(config, formAvatarUpdate);

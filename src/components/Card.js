@@ -41,6 +41,7 @@ export default class Card {
         this._cardImage.src = this._link;
 
         this._setEventListeners();
+        this._setLikes();
         return this._card;
     }
 
@@ -69,14 +70,16 @@ export default class Card {
         this._likes = count.likes;
     }
 
-    _likeCard() {
-        this.isLiked()
-    }
-
     isLiked() {
         return this._likes.some((like) => {
             return like._id === this._userId;
         })
+    }
+
+    _setLikes() {
+        if (this._likes.find((setLikeUser) => setLikeUser._id === this._userId)) {
+            this.addLike();
+        }
     }
 
     deleteCard() {
