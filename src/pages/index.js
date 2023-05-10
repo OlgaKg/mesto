@@ -50,7 +50,10 @@ const popupAddCard = new PopupWithForm({
     formSelector: formCard,
     handleFormSubmit: (data) => {
         api.addNewCard(data)
-            .then((res) => renderCard(res))
+            .then((res) => {
+                renderCard(res);
+                popupAddCard.close();
+            })
             .catch((err) => {
                 console.log(err);
             })
@@ -137,6 +140,7 @@ function handleCardDelete(card) {
         api.deleteCard(card.idCard)
             .then(() => {
                 card.deleteCard();
+                popupWithConfirmation.close();
             }).catch((err) => console.log(`Ошибка: ${err}`))
     });
 }
