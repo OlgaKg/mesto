@@ -35,6 +35,7 @@
 .elements__title{color:#000;font-size:24px;font-weight:900;line-height:29px;max-width:198px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .elements__like-btn{align-self:center;background-color:unset;background-image:url(0bc60938ca96a5dcae18.svg);background-position:50%;background-repeat:no-repeat;background-size:contain;border:none;cursor:pointer;height:19px;min-width:22px;padding:0;transition:.4s linear}.elements__like-btn:hover{opacity:.5}
 .elements__like-btn_active{background-color:unset;background-image:url(fe17a515669479b1e649.svg);background-position:50%;background-repeat:no-repeat}
+.elements__like-count{color:#000;font-size:13px;line-height:16px;margin:0;text-align:center}
 .footer{margin:0 auto}@media (min-width:320px){.footer{margin-bottom:36px;margin-top:48px;max-width:282px}}@media (min-width:1280px){.footer{margin-bottom:60px;margin-top:66px;max-width:880px}}
 .footer__copyright{color:#545454;font-weight:400;text-align:left}@media (min-width:320px){.footer__copyright{font-size:14px;line-height:17px;max-width:282px}}@media (min-width:1280px){.footer__copyright{font-size:18px;line-height:22px}}
 
