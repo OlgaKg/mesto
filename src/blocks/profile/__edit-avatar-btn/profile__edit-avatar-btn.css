@@ -1,18 +1,50 @@
 .profile__edit-avatar-btn {
-    max-width: 120px;
-    max-height: 120px;
-    padding: 0;
-    margin: 0;
+    display: block;
+    position: relative;
+    width: 120px;
+    height: 120px;
     border: none;
     border-radius: 50%;
-    /* object-fit: cover; */
+    padding: 0;
 }
 
-.profile__edit-avatar-btn:hover {
+@media (min-width: 320px) {
+    .profile__edit-avatar-btn {
+        margin: 0 auto 26px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .profile__edit-avatar-btn {
+        margin: 0 30px 0 0;
+    }
+}
+
+.profile__edit-avatar-btn::before,
+.profile__edit-avatar-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    transition: ease-out .3s;
+}
+
+.profile__edit-avatar-btn::before {
     background-image: url(../../../images/editAvatarBtn.svg);
-    border: none;
-    background-position: center;
     background-repeat: no-repeat;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-position: center;
+    z-index: 2;
+}
+
+.profile__edit-avatar-btn::after {
+    background: rgba(0, 0, 0, .8);
+}
+
+.profile__edit-avatar-btn:hover::before,
+.profile__edit-avatar-btn:hover::after {
     cursor: pointer;
+    opacity: 1;
 }

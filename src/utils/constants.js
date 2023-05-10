@@ -8,18 +8,21 @@ const config = {
     cardListSelector: '.elements'
 };
 
+const editAvatarBtn = document.querySelector('.profile__edit-avatar-btn');
 const editBtn = document.querySelector('.profile__edit-btn-open-popup');
 const addImgBtn = document.querySelector('.profile__add-btn');
 const closeBtns = document.querySelectorAll('.popup__closed-btn');
 const popupEditProfile = document.querySelector('.popup_type_edit-profile');
 const popupAddNewCard = document.querySelector('.popup_type_add-new-card');
 
+const formAvatarUpdate = document.querySelector('.popup__form_update-avatar');
 const formProfile = document.querySelector('.popup__form_profile');
 const formCard = document.querySelector('.popup__form_new-card');
 const nameInput = document.querySelector(`input[name='user']`);
 const professionInput = document.querySelector(`input[name='profession']`);
 const profileName = document.querySelector('.profile__name');
 const profileProfession = document.querySelector('.profile__profession');
+const profileAvatar = document.querySelector('.profile__avatar');
 
 const elementsCards = document.querySelector('.elements');
 const imageNameInput = document.querySelector(`input[name='image-name']`);
@@ -32,5 +35,5 @@ const popupImg = document.querySelector('.popup_type_image');
 export {
     config, editBtn, addImgBtn, closeBtns, popupEditProfile, popupAddNewCard, formProfile, formCard,
     nameInput, professionInput, profileName, profileProfession, elementsCards, imageNameInput, imageLinkInput,
-    popupPreviewImg, popupTitleImg, popupImg
+    popupPreviewImg, popupTitleImg, popupImg, profileAvatar, formAvatarUpdate, editAvatarBtn
 };
