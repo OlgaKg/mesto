@@ -14,6 +14,7 @@ import {
 } from '../utils/constants.js';
 let userId = null;
 
+const validateAvatarUpdatePopup = new FormValidator(config, formAvatarUpdate);
 const validateEditProfilePopup = new FormValidator(config, popupEditProfile);
 const validateAddNewCard = new FormValidator(config, popupAddNewCard);
 
@@ -41,9 +42,8 @@ const defaultCardList = new Section({
     }
 }, config.cardListSelector);
 
-
 const popupWithImage = new PopupWithImage('.popup_type_image');
-popupWithImage.setEventListeners();
+const popupWithConfirmation = new PopupWithConfirmation('.popup_type_confirm');
 
 const popupAddCard = new PopupWithForm({
     popupSelector: '.popup_type_add-new-card',
@@ -59,7 +59,6 @@ const popupAddCard = new PopupWithForm({
             })
     }
 });
-popupAddCard.setEventListeners();
 
 const userInfo = new UserInfo({
     userNameSelector: profileName,
@@ -80,11 +79,10 @@ const popupProfile = new PopupWithForm({
                 console.log(err);
             })
             .finally(() => {
-                popupAddCard.renderLoading(false);
+                popupProfile.renderLoading(false);
             });
     }
 });
-popupProfile.setEventListeners();
 
 const popupAvatarUpdate = new PopupWithForm({
     popupSelector: '.popup_type_update-avatar',
@@ -97,10 +95,12 @@ const popupAvatarUpdate = new PopupWithForm({
             })
             .catch((err) => {
                 console.log(err);
+            })
+            .finally(() => {
+                popupAvatarUpdate.renderLoading(false);
             });
     }
 });
-popupAvatarUpdate.setEventListeners();
 
 function renderCard(data) {
     const card = new Card(data, config.cardTemplate, userId, {
@@ -131,9 +131,6 @@ function handleCardLike(card) {
     }
 }
 
-const popupWithConfirmation = new PopupWithConfirmation('.popup_type_confirm');
-popupWithConfirmation.setEventListeners();
-
 function handleCardDelete(card) {
     popupWithConfirmation.open();
     popupWithConfirmation.setSubmitAction(() => {
@@ -144,21 +141,28 @@ function handleCardDelete(card) {
     });
 }
 
+popupWithImage.setEventListeners();
+popupAddCard.setEventListeners();
+popupAvatarUpdate.setEventListeners();
+popupProfile.setEventListeners();
+popupWithConfirmation.setEventListeners();
+
 editBtn.addEventListener('click', () => {
     popupProfile.open();
     popupProfile.setInputValues(userInfo.getUserInfo());
-    validateEditProfilePopup.resetInputError();
+    validateEditProfilePopup.resetFormValidation();
 });
 
 addImgBtn.addEventListener('click', () => {
     popupAddCard.open();
-    validateAddNewCard.disableSaveBtn();
-    validateAddNewCard.resetInputError();
+    validateAddNewCard.resetFormValidation();
 });
 
 editAvatarBtn.addEventListener('click', () => {
-    popupAvatarUpdate.open()
+    popupAvatarUpdate.open();
+    validateAvatarUpdatePopup.resetFormValidation();
 });
 
 validateEditProfilePopup.enableValidation();
 validateAddNewCard.enableValidation();
+validateAvatarUpdatePopup.enableValidation();

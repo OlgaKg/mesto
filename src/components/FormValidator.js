@@ -67,6 +67,11 @@ export default class FormValidator {
         });
     }
 
+    resetFormValidation() {
+        this.disableSaveBtn();
+        this.resetInputError();
+    }
+
     enableValidation() {
         this._setEventListeners(this._formElement, this.config);
     }
